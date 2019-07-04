@@ -10,41 +10,41 @@ package main
 import "fmt"
 
 //定义一个手机接口
-type Phone interface {
+type phone interface {
 	call() // 拥有呼叫的行为
 }
 
 // 华为手机
-type HuaWeiPhone struct {
+type huaWeiPhone struct {
 	name string
 }
 
 // 小米手机
-type XiaoMiPhone struct {
+type xiaoMiPhone struct {
 	name string
 }
 
 // 华为手机 实现call
-func (this HuaWeiPhone) call() {
+func (this huaWeiPhone) call() {
 	fmt.Println(this.name, " is calling")
 }
 
 // 小米手机 实现call
-func (this XiaoMiPhone) call() {
+func (this xiaoMiPhone) call() {
 	fmt.Println(this.name, " is calling")
 }
 
 func main() {
 
 	// 定义一个Phone类型变量
-	var phone Phone
+	var phone phone
 
-	hwPhone := HuaWeiPhone{"HuaWei"}
+	hwPhone := huaWeiPhone{"HuaWei"}
 	hwPhone.call()
 	phone = hwPhone
 	phone.call()
 
-	xmPhone := XiaoMiPhone{"XiaoMi"}
+	xmPhone := xiaoMiPhone{"XiaoMi"}
 	xmPhone.call()
 	phone = xmPhone
 	phone.call()
