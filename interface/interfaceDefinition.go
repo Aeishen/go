@@ -52,7 +52,6 @@ func (this *xxPhone) call() {
 }
 
 
-
 func main() {
 
 	// 定义一个Phone类型变量
@@ -61,19 +60,26 @@ func main() {
 	// 值实现接口
 	hwPhone := huaWeiPhone{"HuaWei"}
 	hwPhone.call()
-	phone = hwPhone   // 值调用（在go中，值接收者的方法可以使用值或者指针调用）
+	phone = hwPhone   // 值调用
 	phone.call()
 
 	xmPhone := xiaoMiPhone{"XiaoMi"}
 	xmPhone.call()
-	phone = &xmPhone  // 指针调用（在go中，值接收者的方法可以使用值或者指针调用）
+	phone = &xmPhone  // 指针调用（在go中，接收者是值的方法可以通过指针调用，因为指针会首先被解引用）
 	phone.call()
 
 	// 指针实现接口
 	xx := xxPhone{"xx"}
 	xx.call()
-	phone = &xx      // 此处只能用指针调用（在go中，指针接收者的方法可以使用指针调用）
+	phone = &xx      // 此处只能用指针调用（在go中，接收者是指针的方法不可以通过值调用，因为存储在接口中的值没有地址）
 	phone.call()
+
+	/*
+	    Go 语言规范定义了接口方法集的调用规则：
+			类型 *T 的可调用方法集包含接受者为 *T 或 T 的所有方法集
+			类型 T 的可调用方法集包含接受者为 T 的所有方法
+			类型 T 的可调用方法集不包含接受者为 *T 的方法
+	*/
 
 }
 
