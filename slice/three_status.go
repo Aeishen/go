@@ -95,7 +95,7 @@ func main(){
 
     var eg_1 = Eg{}
     var eg_2 = Eg{[]int{}}
-		fmt.Println("eg_1 value is nil ?",eg_1.Values == nil)
+    fmt.Println("eg_1 value is nil ?",eg_1.Values == nil)
 	fmt.Printf("eg_1 value: %#v\n",eg_1)
 
 	fmt.Println("eg_2 value is nil ?",eg_2.Values == nil)

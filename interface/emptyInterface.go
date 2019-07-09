@@ -24,6 +24,13 @@ func explain(i interface{}) {
 	fmt.Printf("value of s is %v\n\n", i)
 }
 
+// 接受接口类型切片
+func print(i ...interface{}){
+	fmt.Println(i...)
+}
+
+
+
 func main() {
 
 	//将 int 类型的变量当作接口，打印出该接口的动态类型与动态值
@@ -45,6 +52,11 @@ func main() {
 	var i_string i_String
 	i_string = "i am string type"
 	explain(i_string)
+
+	// 当可变参数是一个空接口类型时，调用者是否解包可变参数会导致不同的结果
+	var a = []interface{}{123, "abc"}
+	print(a...) // 解包，输出123 abc，等价于直接调用Print(123, "abc")
+	print(a)    // 未解包，输出[123 abc]，等价于直接调用Print([]interface{}{123, "abc"})
 
 }
 
