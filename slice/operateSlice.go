@@ -3,7 +3,7 @@
 @data :  19/07/09, 15:24
 
 @description : 对切片操作
-@from
+@from :  Go语言高级编程(Advanced Go Programming), 柴树杉 曹春晖/著
 */
 
 package main

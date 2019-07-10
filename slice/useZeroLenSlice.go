@@ -3,7 +3,7 @@
 @data :  19/07/09, 14:11
 
 @description : 使用0长切片
-@from
+@from :  Go语言高级编程(Advanced Go Programming), 柴树杉 曹春晖/著
 */
 
 package main
