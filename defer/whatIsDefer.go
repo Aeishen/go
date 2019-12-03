@@ -40,14 +40,20 @@ defer底层原理：
     例子test1,test2,test3,
 
 
+利用defer原理：
+	有些情况下，我们会故意用到defer的先求值，再延迟调用的性质。想象这样的场景：在一个函数里，需要打开两个文件进行合并操作，合并完后，
+    在函数执行完后关闭打开的文件句柄。
 
-
-
+	例子test4
 */
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"os"
+)
 
 type number int
 
@@ -106,4 +112,26 @@ func (n number) test31(){
 
 func (n *number) test32(){
 	fmt.Println("test3_2:",*n)
+}
+
+
+//defer函数定义时，参数已复制进去了，之后执行close()函数时刚好关闭的是正确的“文件”！如果不将f当成函数参数传递进去的话，最后两个语句关闭的就是同一个文件，都是最后一个打开的文件
+func test4()  {
+	f1,_ := os.Open("file1.txt")
+	if f1 != nil {
+		defer func(f io.Closer) {
+			if err := f1.Close(); err != nil{
+				fmt.Printf("defer close file1.txt err %v\n", err)
+			}
+		}(f1)
+	}
+
+	f2,_ := os.Open("file2.txt")
+	if f2 != nil {
+		defer func(f io.Closer) {
+			if err := f2.Close(); err != nil{
+				fmt.Printf("defer close file2.txt err %v\n", err)
+			}
+		}(f2)
+	}
 }
