@@ -57,7 +57,7 @@ type sortTyre interface {
 }
 
 func insertionSortForInterface(arr sortTyre)  {
-	sta,en := 0,arr.Len()
+	sta,en := 0,arr.Len()-1
 	for i := sta + 1; i < en ;i ++{
 		for j := i; j > sta && arr.Less(j,j - 1); j--{
 			arr.Swap(j,j - 1)
